@@ -1,5 +1,4 @@
 const sql = require("./db.js")
-
 const User = function(user){
   this.id = user.id
   this.username = user.username
@@ -21,8 +20,8 @@ User.create = (newUser, result) => {
   })
 }
 
-User.getUser = (id, result) => {
-  sql.query(`SELECT * FROM tutorials WHERE id = ${id}`, (err, res) => {
+User.getUser = (username, result) => {
+  sql.query(`SELECT * FROM Users WHERE username = ${username}`, (err, res) => {
     if(err) {
       console.log("error: ", err)
       result(err, null)
