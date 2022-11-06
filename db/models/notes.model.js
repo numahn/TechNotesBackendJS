@@ -6,3 +6,4 @@ const Notes = function(notes){
   this.note_title = notes.note_title
   this.note_content = notes.note_content
 }
+

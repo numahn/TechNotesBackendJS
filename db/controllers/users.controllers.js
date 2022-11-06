@@ -1,6 +1,7 @@
 const User = require("../models/users.model.js")
 const bCrypt = require("bcrypt")
 const uuid = require("uuid")
+const jwt = require("jsonwebtoken")
 
 exports.signUp = (req, res) => {
   if(!req.body){
@@ -14,7 +15,7 @@ exports.signUp = (req, res) => {
       username: req.body.username,
       first_name:  req.body.first_name,
       last_name:  req.body.last_name,
-      dob: req.body.dob,
+      dob: req.body.dob.toLocaleString(),
       pwd: hash
     })
     User.create(user, (err,data) => {
@@ -23,7 +24,7 @@ exports.signUp = (req, res) => {
           message:
             err.message || "Some error occured while creating user."
         })
-        else res.send(data)
+        res.send({data, success: true})
     })
   })
 }
@@ -32,7 +33,7 @@ exports.signIn = (req, res) => {
   if(!req.body){
     res.status(400).send({
       message: "Content cannot be empty."
-    })
+    }) 
   }
   User.getUser(req.body.username, (err, user) =>{
     if(err){
@@ -50,6 +51,11 @@ exports.signIn = (req, res) => {
       req.body.pwd,
       user.pwd,
       (err, result) =>{
+        if(err){
+          res.status(500).send({
+            message: err
+        })
+        }
         if(result){
           var token = jwt.sign(
             JSON.parse(JSON.stringify(user)),

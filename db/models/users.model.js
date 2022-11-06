@@ -13,10 +13,9 @@ User.create = (newUser, result) => {
     if (err){
       console.log("error: ", err)
       result(err, null)
-      return
     }
-    console.log("Created user: ", {id: res.insertID, ...newUser})
-    result(null, {id: res.insertId, ...newUser})
+    console.log("Created user: ", {...newUser})
+    result(null, {...newUser})
   })
 }
 
@@ -25,13 +24,13 @@ User.getUser = (username, result) => {
     if(err) {
       console.log("error: ", err)
       result(err, null)
-      return
     }
     if (res.length){
       console.log("found user: ", res[0])
       result(null, res[0])
-      return;
     }
-    result({kind: "not_found"}, null)
+    else result({kind: "not_found"}, null)
   })
 }
+
+module.exports = User

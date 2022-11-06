@@ -1,13 +1,17 @@
-const mysql = require('mysql2')
+const cors = require('cors')
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
 
-let con = mysql.createConnection({
-  host: "localhost",
-  user: "user",
-  password: "password"
+app.use(cors())
+app.use(bodyParser.json())
+app.get('/', (req, res) => {
+  res.send('We are on home')
 })
 
-con.connect(function(err){
-  if (err) throw err;
-  console.log("connected")
-})
+require("./db/routes/user.routes.js")(app)
 
+const PORT = process.env.PORT || 8080
+app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}.`)
+})
