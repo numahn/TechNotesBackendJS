@@ -4,7 +4,7 @@ module.exports = (app) => {
 
   router.post("/signup", users.signUp)
 
-  router.post("/signin", users.signIn)
+  router.post("/login", users.signIn)
 
   app.use("/", router)
 }

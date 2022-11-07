@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
 })
 
 require("./db/routes/user.routes.js")(app)
+require("./db/routes/notes.routes.js")(app)
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {

@@ -3,9 +3,8 @@ const sql = require("./db.js")
 const Notes = function(notes){
   this.userID = notes.userID
   this.notesID = notes.notesID
-  this.date_created = notes.date_created
-  this.note_title = notes.note_title
-  this.note_content = notes.note_content
+  this.title = notes.title
+  this.content = notes.content
 }
 
 Notes.create = (newNotes, result) => {
@@ -40,7 +39,7 @@ Notes.getAllNotesFromUser = (userid, result) => {
       result(err, null)
     }
     if (res.length){
-      console.log("found note_data: ", res)
+      console.log("found data: ", res)
       result(null, res)
     }
     else result({kind: "not_found"}, null)
@@ -48,7 +47,7 @@ Notes.getAllNotesFromUser = (userid, result) => {
 }
 
 Notes.updateNote = (info, result) =>{
-  sql.query(`UPDATE Notes SET note_title= ${info.title}, note_content=${info.content} WHERE notesID=${info.id}}`)
+  sql.query(`UPDATE Notes SET title= ${info.title}, content=${info.content} WHERE notesID=${info.id}}`)
   if (err){
     console.log("error: ", err)
     result(err, null)

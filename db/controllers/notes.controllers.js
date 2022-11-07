@@ -10,9 +10,8 @@ exports.createNote = (req, res) => {
   const notes = new Notes({
     userID: req.body.userID,
     notesID: uuid.v4(),
-    date_created: req.body.date_created,
-    note_title: req.body.note_title,
-    note_content: req.body.note_content
+    title: req.body.title,
+    content: req.body.content
   })
   Notes.create(notes, (err,data) => {
     if (err)
