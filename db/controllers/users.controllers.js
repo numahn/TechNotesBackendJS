@@ -9,13 +9,12 @@ exports.signUp = (req, res) => {
       message: "Content cannot be empty."
     })
   }
-  bCrypt.hash(req.body.pwd, 10).then((hash) => {
+  bCrypt.hash(req.body.password, 10).then((hash) => {
     const user = new User({
       id: uuid.v4(),
       username: req.body.username,
       first_name:  req.body.first_name,
       last_name:  req.body.last_name,
-      dob: req.body.dob.toLocaleString(),
       pwd: hash
     })
     User.create(user, (err,data) => {
@@ -38,22 +37,25 @@ exports.signIn = (req, res) => {
   User.getUser(req.body.username, (err, user) =>{
     if(err){
       if(err.kind === "not_found"){
-        res.status(404).send({
+        return res.status(404).send({
           message: `Username does not exist`
         })
       } else {
-          res.status(500).send({
+          return res.status(500).send({
             message: "Error getting username"
         })
       }
     } 
+    console.log(req.body.password)
+    console.log(user.pwd)
     bCrypt.compare(
-      req.body.pwd,
+      req.body.password,
       user.pwd,
       (err, result) =>{
+        console.log(result)
         if(err){
-          res.status(500).send({
-            message: err
+          return res.status(500).send({
+            message: err.message
         })
         }
         if(result){
@@ -62,7 +64,7 @@ exports.signIn = (req, res) => {
             "nodeauthsecret",
             {expiresIn: 86400 * 30}
           )
-          res.json({success: true, token: "JWT " + token})
+          return res.json({success: true, token: "JWT " + token})
         } else{
           return res.status(401).send({
             message: "Authentication failed. Wrong password",

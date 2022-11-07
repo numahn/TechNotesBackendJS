@@ -41,8 +41,10 @@ exports.listNotes = (req, res) => {
         })
       }
     } 
-    console.log(notes)
-    res.send({notes, success: true})
+    else{
+      console.log(notes)
+      res.send({notes, success: true})
+    }
   })
 }
 

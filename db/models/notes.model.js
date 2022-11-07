@@ -38,7 +38,7 @@ Notes.getAllNotesFromUser = (userid, result) => {
       console.log("error: ", err)
       result(err, null)
     }
-    if (res.length){
+    else if (res.length){
       console.log("found data: ", res)
       result(null, res)
     }

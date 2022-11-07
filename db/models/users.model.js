@@ -4,7 +4,6 @@ const User = function(user){
   this.username = user.username
   this.first_name = user.first_name
   this.last_name = user.last_name
-  this.dob = user.dob
   this.pwd = user.pwd
 }
 
@@ -25,7 +24,7 @@ User.getUser = (username, result) => {
       console.log("error: ", err)
       result(err, null)
     }
-    if (res.length){
+    else if (res.length){
       console.log("found user: ", res[0])
       result(null, res[0])
     }
