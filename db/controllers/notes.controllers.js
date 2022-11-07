@@ -7,6 +7,7 @@ exports.createNote = (req, res) => {
       message: "Content cannot be empty."
     })
   }
+  console.log("request: ", req.body)
   const notes = new Notes({
     userID: req.body.userID,
     notesID: uuid.v4(),
