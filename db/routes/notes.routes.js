@@ -8,5 +8,7 @@ module.exports = (app) => {
 
   router.put("/note", notes.updateNotes)
 
+  router.delete("/delete-note", notes.deleteNotes)
+
   app.use("/", router)
 }

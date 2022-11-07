@@ -33,7 +33,7 @@ Notes.create = (newNotes, result) => {
 // }
 
 Notes.getAllNotesFromUser = (userid, result) => {
-  sql.query(`SELECT * FROM Notes WHERE userID = ${userid}`, (err, res) => {
+  sql.query(`SELECT * FROM Notes WHERE userID = '${userid}'`, (err, res) => {
     if(err) {
       console.log("error: ", err)
       result(err, null)
@@ -47,13 +47,24 @@ Notes.getAllNotesFromUser = (userid, result) => {
 }
 
 Notes.updateNote = (info, result) =>{
-  sql.query(`UPDATE Notes SET title= ${info.title}, content=${info.content} WHERE notesID=${info.id}}`)
+  sql.query(`UPDATE Notes SET title= '${info.title}', content='${info.content}' WHERE notesID='${info.notesID}'`, (err, res)=> {
   if (err){
     console.log("error: ", err)
     result(err, null)
   }
-  console.log("Created notes: ", {...newNotes})
-  result(null, {...newNotes})
+})
+  console.log("Created notes: ", {...info})
+  result(null, {...info})
+}
+
+Notes.delete = (notesID, result) => {
+  sql.query(`DELETE FROM Notes WHERE notesID = '${notesID}'`, (err, res) => {
+    if(err) {
+      console.log("error: ", err)
+      result(err, null)
+    }
+    result(null, res)
+  })
 }
 
 module.exports = Notes

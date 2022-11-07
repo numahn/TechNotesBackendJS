@@ -18,7 +18,7 @@ Images.create = (newImage, result) => {
 }
 
 Images.getAllImagesFromUser = (userid, result) => {
-  sql.query(`SELECT * FROM Images WHERE userID = ${userid}`, (err, res) => {
+  sql.query(`SELECT * FROM Images WHERE userID = '${userid}'`, (err, res) => {
     if(err) {
       console.log("error: ", err)
       result(err, null)

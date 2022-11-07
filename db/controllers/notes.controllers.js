@@ -52,6 +52,7 @@ exports.updateNotes = (req, res) =>{
       message: "Content cannot be empty."
     }) 
   }
+  console.log("testing: ", req.body)
   Notes.updateNote(req.body, (err, note) => {
     if(err){
       res.status(500).send({
@@ -60,5 +61,23 @@ exports.updateNotes = (req, res) =>{
     }
     console.log(note)
     res.send({note, success: true})
+  })
+}
+
+
+exports.deleteNotes = (req, res) => {
+  if(!req.body){
+    res.status(400).send({
+      message: "Content cannot be empty."
+    }) 
+  }
+  Notes.delete(req.body.notesID, (err, result) =>{
+    if(err){
+      res.status(500).send({
+        message: "Error deleting note"
+      })
+    }
+    console.log(result)
+    res.send({result, success: true})
   })
 }

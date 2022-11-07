@@ -20,7 +20,7 @@ User.create = (newUser, result) => {
 }
 
 User.getUser = (username, result) => {
-  sql.query(`SELECT * FROM Users WHERE username = ${username}`, (err, res) => {
+  sql.query(`SELECT * FROM Users WHERE username = '${username}'`, (err, res) => {
     if(err) {
       console.log("error: ", err)
       result(err, null)
