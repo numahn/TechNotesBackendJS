@@ -29,7 +29,7 @@ exports.listNotes = (req, res) => {
       message: "Content cannot be empty."
     }) 
   }
-  Notes.getAllNotesFromUser(req.body.userID, (err, notes) => {
+  Notes.getAllNotesFromUser(req.body.id, (err, notes) => {
     if(err){
       if(err.kind === "not_found"){
         res.status(404).send({

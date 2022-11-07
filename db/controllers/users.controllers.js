@@ -64,7 +64,7 @@ exports.signIn = (req, res) => {
             "nodeauthsecret",
             {expiresIn: 86400 * 30}
           )
-          return res.json({success: true, token: "JWT " + token})
+          return res.json({success: true, token: token})
         } else{
           return res.status(401).send({
             message: "Authentication failed. Wrong password",
