@@ -46,7 +46,8 @@ Notes.getAllNotesFromUser = (userid, result) => {
 }
 
 Notes.updateNote = (info, result) =>{
-  sql.query(`UPDATE Notes SET title= '${info.title}', content='${info.content}' WHERE notesID='${info.notesID}'`, (err, res)=> {
+  console.log("info ", info)
+  sql.query(`UPDATE Notes SET title= '${info.title}', content='${info.content}' WHERE notesID='${info.noteID}'`, (err, res)=> {
   if (err){
     console.log("error: ", err)
     result(err, null)
