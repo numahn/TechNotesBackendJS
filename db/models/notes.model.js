@@ -7,6 +7,46 @@ const Notes = function(notes){
   this.content = notes.content
 }
 
+Notes.create = (newNotes, result) =>{
+  sql.query("INSERT INTO Notes SET ?", newNotes, (err, res) => {
+    if (err){
+      console.log("error: ", err)
+      result(err.message, null)
+    }
+    console.log("Created notes: ", {newNotes})
+    result(null, {...newNotes})
+  })
+}
+
+Notes.getAllNotesFromUser = (userID, result) => {
+  sql.query(`SELECT * FROM Notes WHERE userID = '${userID}`, (err, res) =>{
+    if (err){
+      console.log("error: ", err)
+      result(err.message, null)
+    }
+    console.log("Found data: ", res)
+    result(null, res)
+  })
+}
+
+
+
+
+
+
+
+// Notes.getAllNotesFromUser = (userid, result) => {
+//   sql.query(`SELECT * FROM Notes WHERE userID = '${userid}'`, (err, res) => {
+//     if(err) {
+//       console.log("error: ", err)
+//       result(err, null)
+//     }
+//     else{
+//       console.log("found data: ", res)
+//       result(null, res)
+//     }
+//   })
+// }
 
 
 // const sql = require("./db.js")
