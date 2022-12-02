@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 require("./db/routes/user.routes.js")(app)
 require("./db/routes/notes.routes.js")(app)
-require("./db/routes/images.routes.js")(app)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
