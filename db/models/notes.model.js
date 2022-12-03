@@ -29,10 +29,14 @@ Notes.getAllNotesFromUser = (userID, result) => {
   })
 }
 
+Notes.updateNote = (info, result) => {
+  
+}
 
 
 
-// //Maybe not needed???
+
+// //Maybe not needed?
 // // Notes.getNote = (id, result) => {
 // //   sql.query(`SELECT * FROM Notes WHERE notesID = ${id}`, (err, res) => {
 // //     if(err) {
