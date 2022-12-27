@@ -19,7 +19,7 @@ Notes.create = (newNotes, result) =>{
 }
 
 Notes.getAllNotesFromUser = (userID, result) => {
-  sql.query(`SELECT * FROM Notes WHERE userID = '${userID}`, (err, res) =>{
+  sql.query(`SELECT * FROM Notes WHERE userID = '${userID}'`, (err, res) =>{
     if (err){
       console.log("error: ", err)
       result(err.message, null)
@@ -30,7 +30,14 @@ Notes.getAllNotesFromUser = (userID, result) => {
 }
 
 Notes.updateNote = (info, result) => {
-  
+  sql.query(`UPDATE Notes SET title ='${info.title}', content = '${info.content}' WHERE notesID = '${info.noteID}'`, (err, res)=> {
+    if (err){
+      console.log("error: ", err)
+      result(err, null)
+    }
+  })
+  console.log("Updated notes: ", {...info})
+  result(null, {...info})
 }
 
 
