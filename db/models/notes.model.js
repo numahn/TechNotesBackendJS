@@ -28,7 +28,7 @@ Notes.getAllNotesFromUser = (userID, result) => {
     result(null, res)
   })
 }
-//Maybe change later
+//Maybe change later?
 Notes.updateNote = (info, result) => {
   sql.query(`UPDATE Notes SET title ='${info.title}', content = '${info.content}' WHERE notesID = '${info.noteID}'`, (err, res)=> {
     if (err){
