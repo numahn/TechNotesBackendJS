@@ -21,7 +21,29 @@ exports.createNote = (req, res) => {
       res.send({data, success: true})
   })
 }
-
+exports.listNotes = (req, res) => {
+  if(!req.body){
+    res.status(500).send({
+      message: "Content cannot be empty."
+    })
+  }
+  Notes.getAllNotesFromUser(req.body.userID, (err, notes) => {
+    if (err){
+      if(err.kind === "not_found"){
+        res.status(404).send({
+          message: "userID does not exist"
+        })
+      } else{
+        res.status(500).send({
+          message: "Error getting username"
+        })
+      }
+    }else{
+      console.log(notes)
+      res.send({notes, success: true})
+    }
+  })
+}
 
 
 
