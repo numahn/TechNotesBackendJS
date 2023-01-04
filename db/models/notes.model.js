@@ -30,7 +30,7 @@ Notes.getAllNotesFromUser = (userID, result) => {
 }
 //Maybe change later?
 Notes.updateNote = (info, result) => {
-  sql.query(`UPDATE Notes SET title ='${info.title}', content = '${info.content}' WHERE notesID = '${info.noteID}'`, (err, res)=> {
+  sql.query(`UPDATE Notes SET title ='${info.title}', content = '${info.content}' WHERE notesID = '${info.notesID}'`, (err, res)=> {
     if (err){
       console.log("error: ", err)
       result(err, null)
@@ -40,7 +40,15 @@ Notes.updateNote = (info, result) => {
   result(null, {...info})
 }
 
-
+Notes.delete = (notesID, result) => {
+  sql.query(`DELETE FROM Notes WHERE notesID= '${notesID}`, (err, res) =>{
+    if (err){
+      console.log("error: ", err)
+      result(err, null)
+    }
+    result(null, res)
+  })
+}
 
 
 // //Maybe not needed?
