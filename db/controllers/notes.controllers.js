@@ -7,7 +7,19 @@ exports.createNote = (req, res) => {
       message: "Content cannot be empty."
     })
   }
-  
+  const notes = new Notes({
+    userID: req.body.userID,
+    notesID: uuid.v4(),
+    title: req.body.title,
+    content: req.body.content
+  })
+  Notes.create(notes, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || "Some error occured while creating notes."
+      })
+      res.send({data, success: true})
+  })
 }
 
 

@@ -50,6 +50,7 @@ Notes.delete = (notesID, result) => {
   })
 }
 
+module.exports = Notes
 
 // //Maybe not needed?
 // // Notes.getNote = (id, result) => {
