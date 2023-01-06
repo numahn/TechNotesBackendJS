@@ -21,9 +21,10 @@ exports.createNote = (req, res) => {
       res.send({data, success: true})
   })
 }
+
 exports.listNotes = (req, res) => {
   if(!req.body){
-    res.status(500).send({
+    res.status(400).send({
       message: "Content cannot be empty."
     })
   }
@@ -41,6 +42,24 @@ exports.listNotes = (req, res) => {
     }else{
       console.log(notes)
       res.send({notes, success: true})
+    }
+  })
+}
+
+exports.updateNotes = (req, res) => {
+  if(!req.body){
+    res.status(400).send({
+      message: "Content cannot be empty."
+    })
+  }
+  Notes.updateNote(req.body, (err, note) => {
+    if(err){
+      res.status(500).send({
+        message: "Error getting username."
+      })
+    }else{
+      console.log(note)
+      res.send({note, success: true})
     }
   })
 }
