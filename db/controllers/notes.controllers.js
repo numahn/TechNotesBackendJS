@@ -32,7 +32,7 @@ exports.listNotes = (req, res) => {
     if (err){
       if(err.kind === "not_found"){
         res.status(404).send({
-          message: "userID does not exist"
+          message: "userID does not exist, or no notes are found"
         })
       } else{
         res.status(500).send({
