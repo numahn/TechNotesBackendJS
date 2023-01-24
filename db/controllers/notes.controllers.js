@@ -64,7 +64,7 @@ exports.updateNotes = (req, res) => {
   })
 }
 
-exportss.deleteNotes = (req, res) => {
+exports.deleteNotes = (req, res) => {
   if(!req.body){
     res.status(400).send({
       message: "Content cannot be empty."
