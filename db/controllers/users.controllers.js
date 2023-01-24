@@ -15,7 +15,7 @@ exports.signUp = (req, res) => {
       username: req.body.username,
       first_name:  req.body.first_name,
       last_name:  req.body.last_name,
-      pwd: hash
+      password: hash
     })
     User.create(user, (err,data) => {
       if(err)
@@ -47,10 +47,10 @@ exports.signIn = (req, res) => {
       }
     } 
     console.log(req.body.password)
-    console.log(user.pwd)
+    console.log(user.password)
     bCrypt.compare(
       req.body.password,
-      user.pwd,
+      user.password,
       (err, result) =>{
         console.log(result)
         if(err){
