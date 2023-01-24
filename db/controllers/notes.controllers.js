@@ -64,6 +64,26 @@ exports.updateNotes = (req, res) => {
   })
 }
 
+exportss.deleteNotes = (req, res) => {
+  if(!req.body){
+    res.status(400).send({
+      message: "Content cannot be empty."
+    })
+  }
+  Notes.delete(req.body.notesID, (err, result) => {
+    if(err){
+      res.status(500).send({
+        message: "Error deleting note"
+      })
+    }
+    else{
+      console.log(result)
+      res.send({result, success: true})
+    }
+  })
+}
+
+
 
 
 // const Notes = require("../models/notes.model.js")
