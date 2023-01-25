@@ -32,4 +32,17 @@ User.getUser = (username, result) => {
   })
 }
 
+User.getAllUsers = (result) => {
+  sql.query(`SELECT * FROM Users`, (err, res) => {
+    if(err) {
+      console.log("error: ", err)
+      result(err, null)
+    }
+    else{
+      console.log("found users: ", res)
+      result(null, res)
+    }
+  })
+}
+
 module.exports = User

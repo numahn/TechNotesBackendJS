@@ -77,3 +77,13 @@ exports.signIn = (req, res) => {
 }
 
 
+exports.listAll = (req, res) => {
+  User.getAllUsers((err, users) => {
+    if (err){
+      return res.status(500).send({
+        message: err.message
+    })
+    }
+    res.send({users, success: true})
+  })
+}

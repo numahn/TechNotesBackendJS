@@ -6,5 +6,7 @@ module.exports = (app) => {
 
   router.post("/login", users.signIn)
 
+  router.get("/users", users.listAll)
+
   app.use("/", router)
 }
