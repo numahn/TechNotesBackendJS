@@ -45,7 +45,7 @@ Notes.updateNote = (info, result) => {
 }
 
 Notes.delete = (notesID, result) => {
-  sql.query(`DELETE FROM Notes WHERE notesID= '${notesID}`, (err, res) =>{
+  sql.query(`DELETE FROM Notes WHERE notesID= '${notesID}'`, (err, res) =>{
     if (err){
       console.log("error: ", err)
       result(err, null)
