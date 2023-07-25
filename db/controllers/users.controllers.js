@@ -4,11 +4,13 @@ const uuid = require("uuid")
 const jwt = require("jsonwebtoken")
 
 exports.signUp = (req, res) => {
-  if(!req.body){
+  console.log(Object.keys(req.body).length)
+  if(req.body.username === '' || req.body.first_name === '' || req.body.last_name === '' ||req.body.password === ''){
     res.status(400).send({
-      message: "Content cannot be empty."
+      message: "Content cannot be empty. Please fill out all sections."
     })
-  }
+    return;
+ }
   bCrypt.hash(req.body.password, 10).then((hash) => {
     const user = new User({
       id: uuid.v4(),
@@ -29,6 +31,7 @@ exports.signUp = (req, res) => {
 }
 
 exports.signIn = (req, res) => {
+  console.log(req.body)
   if(!req.body){
     res.status(400).send({
       message: "Content cannot be empty."
@@ -74,6 +77,9 @@ exports.signIn = (req, res) => {
       }
     )
   })
+}
+
+exports.signOut = (req, res) => {
 }
 
 

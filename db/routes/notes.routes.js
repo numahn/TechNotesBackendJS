@@ -4,7 +4,7 @@ module.exports = (app) => {
 
   router.post("/notes", notes.createNote)
 
-  router.post("/list", notes.listNotes)
+  router.get("/list", notes.listNotes)
 
   router.put("/note", notes.updateNotes)
 
