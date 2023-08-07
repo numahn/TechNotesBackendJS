@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 require("./db/routes/user.routes.js")(app)
 require("./db/routes/notes.routes.js")(app)
 
-const PORT = process.env.PORT || 3306
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}.`)
 })  
