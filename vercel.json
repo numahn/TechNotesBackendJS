@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "backend",
+  "name": "TechNotesBackendJS",
   "builds": [
     {
       "src": "index.js",
