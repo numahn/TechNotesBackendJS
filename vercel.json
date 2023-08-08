@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "TechNotesBackendJS",
   "builds": [
     {
       "src": "./index.js",
