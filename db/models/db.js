@@ -2,10 +2,6 @@ const mysql = require("mysql2")
 require("dotenv").config()
 
 const dbConfig = {
-  // host: "localhost",
-  // user: "root",
-  // password: "password",
-  // db: "db
   host: `${process.env.HOST}`,
   user: `${process.env.USER}`,
   password: `${process.env.PASSWORD}`,
